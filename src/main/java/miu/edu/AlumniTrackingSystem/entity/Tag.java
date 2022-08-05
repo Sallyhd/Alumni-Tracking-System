@@ -10,6 +10,8 @@ import java.util.List;
 @Entity
 public class Tag extends BaseClass{
 
+    private String name;
+
     @ManyToMany(mappedBy = "tags")
     private List<JobAdvertisment> jobAdvertisments;
 }
