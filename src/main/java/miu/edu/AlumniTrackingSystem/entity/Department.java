@@ -15,6 +15,8 @@ public class Department {
     @GeneratedValue
     private int id;
 
+    private String name;
+
     @OneToMany(mappedBy = "major")
     private List<Student> students;
 
