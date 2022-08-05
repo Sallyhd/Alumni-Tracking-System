@@ -8,7 +8,7 @@ import java.util.List;
 @Entity
 @Data
 public class JobAdvertisment extends BaseClass{
-
+    private String companyName;
     @ManyToOne
     private Student student;
 
