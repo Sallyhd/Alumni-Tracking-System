@@ -1,4 +1,5 @@
 package miu.edu.AlumniTrackingSystem.service;
 
-public class StudentService {
+import miu.edu.AlumniTrackingSystem.entity.Student;
+public interface StudentService extends UserService<Student>{
 }

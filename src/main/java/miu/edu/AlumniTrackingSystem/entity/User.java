@@ -11,11 +11,13 @@ import java.time.LocalDateTime;
 @Table(name = "Users")
 public class User extends BaseClass{
 
+    private String firstname;
+    private String lastname;
+
     private  String email;
     private String username;
     private String password;
 
     private boolean active;
     private LocalDateTime LastLoggedInAt;
-    private boolean isDeleted;
 }

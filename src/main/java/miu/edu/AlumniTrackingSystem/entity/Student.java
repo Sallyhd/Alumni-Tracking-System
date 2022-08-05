@@ -11,10 +11,6 @@ import java.util.List;
         @PrimaryKeyJoinColumn(name="User_Id",referencedColumnName="id")})
 public class Student extends User{
 
-
-    private String firstname;
-    private String lastname;
-
     private double gpa;
 
     @OneToOne
@@ -28,5 +24,8 @@ public class Student extends User{
 
     @OneToMany(mappedBy = "student",cascade = CascadeType.ALL)
     private List<JobApplication> jobApplications;
+
+    @OneToMany(mappedBy="student",fetch = FetchType.EAGER ,cascade = CascadeType.ALL)
+    private List<JobExperience> professionalExperiences;
 
 }

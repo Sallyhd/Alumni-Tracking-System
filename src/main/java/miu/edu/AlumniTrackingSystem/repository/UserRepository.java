@@ -1,9 +1,9 @@
 package miu.edu.AlumniTrackingSystem.repository;
 
-import miu.edu.AlumniTrackingSystem.entity.Student;
+import miu.edu.AlumniTrackingSystem.entity.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface StudentRepository extends CrudRepository<Student,Integer> {
+public interface UserRepository extends CrudRepository<User,Integer> {
 }
