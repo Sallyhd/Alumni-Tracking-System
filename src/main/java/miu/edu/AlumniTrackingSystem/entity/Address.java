@@ -7,15 +7,12 @@ import javax.persistence.*;
 @Entity
 @Data
 public class Address extends BaseClass{
-    @OneToOne
-    @JoinColumn
+    @OneToOne(mappedBy = "address")
     private Student student;
 
-    @OneToOne
-    @JoinColumn
+    @OneToOne(mappedBy = "address")
     private Faculty faculty;
 
-    @OneToOne
-    @JoinColumn
+    @OneToOne(mappedBy = "address")
     private JobAdvertisment jobAdvertisment;
 }

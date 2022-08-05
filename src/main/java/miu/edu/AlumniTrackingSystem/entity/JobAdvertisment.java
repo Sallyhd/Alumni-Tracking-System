@@ -18,7 +18,7 @@ public class JobAdvertisment extends BaseClass{
     @OneToMany(mappedBy = "jobAdvertisment")
     private List<JobApplication> jobApplications;
 
-    @OneToOne(mappedBy = "jobAdvertisment")
+    @OneToOne
     private Address address;
 
     @ManyToMany

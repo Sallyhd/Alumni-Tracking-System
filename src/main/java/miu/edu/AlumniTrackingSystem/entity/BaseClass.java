@@ -2,15 +2,13 @@ package miu.edu.AlumniTrackingSystem.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity
 @Data
+@MappedSuperclass
 public class BaseClass {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private  int id;
 
     private boolean isDeleted;
