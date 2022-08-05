@@ -7,11 +7,10 @@ import java.util.List;
 
 @Data
 @Entity
-@PrimaryKeyJoinColumn
+@PrimaryKeyJoinColumns({
+        @PrimaryKeyJoinColumn(name="User_Id",referencedColumnName="id")})
 public class Student extends User{
-    @Id
-    @GeneratedValue
-    private  int id;
+
 
     private String firstname;
     private String lastname;

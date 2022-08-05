@@ -7,13 +7,14 @@ import java.util.List;
 
 @Entity
 @Data
-@PrimaryKeyJoinColumn
-public class Faculty extends User {
+@PrimaryKeyJoinColumns({
+        @PrimaryKeyJoinColumn(name="User_Id",referencedColumnName="id")})
+public class Faculty extends  User{
 
     @OneToMany(mappedBy = "faculty")
     private List<Comment> comments;
 
-    @OneToOne(mappedBy = "faculty",cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
     @ManyToOne
