@@ -13,7 +13,7 @@ public class JobAdvertisment extends BaseClass{
     private Student student;
 
     @OneToMany(mappedBy = "jobAdvertisment")
-    private List<JobAttatchment> jobAttatchments;
+    private List<JobAttachment> jobAttatchments;
 
     @OneToMany(mappedBy = "jobAdvertisment")
     private List<JobApplication> jobApplications;
