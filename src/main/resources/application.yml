@@ -4,7 +4,7 @@ spring:
     name: spring-data-demo-1
 
   datasource:
-    password:
+    password: abeni321
     url: jdbc:postgresql://localhost:5432/AlumniTracker
 
     username: postgres

@@ -8,7 +8,7 @@ import java.util.List;
 @Entity
 @Data
 @PrimaryKeyJoinColumn
-public class Faculty extends  User {
+public class Faculty extends User {
 
     @OneToMany(mappedBy = "faculty")
     private List<Comment> comments;
