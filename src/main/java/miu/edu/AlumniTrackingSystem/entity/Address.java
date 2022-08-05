@@ -16,3 +16,5 @@ public class Address extends BaseClass{
     @OneToOne(mappedBy = "address")
     private JobAdvertisment jobAdvertisment;
 }
+
+

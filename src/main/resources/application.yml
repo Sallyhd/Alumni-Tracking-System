@@ -1,11 +1,11 @@
 
 spring:
   application:
-    name: AlumniManagement
+    name: AlumniTracker
 
   datasource:
-    password: sa
-    url: jdbc:postgresql://localhost:5432/AlumniManagement
+    password: abeni321
+    url: jdbc:postgresql://localhost:5432/AlumniTracker
     username: postgres
 
   jpa:
@@ -37,4 +37,11 @@ server:
 #  security-constraints[0].authRoles[0]:USER
 #  keycloak.security-constraints[0].securityCollections[0].patterns[0]=/students/*
 #keycloak.principal-attribute=preferred_username
+
+
+#JobAdevertisme
+#Tag
+#Job
+#JobExpereriaa
+#
 
