@@ -25,7 +25,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
-
+@Service
 public class JobAttachmentServiceImpl implements JobAttachmentService {
     @Autowired
     private JobAttachmentRepository jobAttachmentRepository;
