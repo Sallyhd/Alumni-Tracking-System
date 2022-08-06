@@ -13,6 +13,7 @@ public interface StudentRepository extends CrudRepository<Student,Integer> {
     List<Student> getStudentByAddress_City(String city);
     List<Student> getStudentsByMajor(Department department);
     List<Student> getStudentsByLastname(String lastname);
+    Student getStudentsByUsername(String username);
     Student findStudentsById(int userId);
 
 }

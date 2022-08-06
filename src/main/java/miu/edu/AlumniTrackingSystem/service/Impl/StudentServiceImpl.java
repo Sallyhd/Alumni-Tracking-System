@@ -1,6 +1,7 @@
 package miu.edu.AlumniTrackingSystem.service.Impl;
 
 import miu.edu.AlumniTrackingSystem.configuration.Utils;
+import miu.edu.AlumniTrackingSystem.dto.DepartmentDTO;
 import miu.edu.AlumniTrackingSystem.dto.StudentDTO;
 import miu.edu.AlumniTrackingSystem.entity.Department;
 import miu.edu.AlumniTrackingSystem.entity.Student;
@@ -10,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -46,8 +48,14 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<StudentDTO> getStudentByMajor(Department major) {
-        return Utils.mapList(studentRepository.getStudentsByMajor(major),StudentDTO.class);
+    public List<StudentDTO> getStudentByMajor(DepartmentDTO major) {
+        Department dept =modelMapper.map(major,Department.class);
+        return Utils.mapList(studentRepository.getStudentsByMajor(dept),StudentDTO.class);
+    }
+
+    @Override
+    public StudentDTO getStudentByUserName(String username) {
+        return modelMapper.map(studentRepository.getStudentsByUsername(username),StudentDTO.class);
     }
 
     @Override
@@ -55,5 +63,19 @@ public class StudentServiceImpl implements StudentService {
         return  null;
         //modelMapper
         //return Utils.mapList(studentRepository.findStudentsById(id),StudentDTO.class);
+    }
+
+    @Override
+    public List<StudentDTO> findAll() {
+        List<StudentDTO> result = new ArrayList<StudentDTO>();
+        for (Student std : studentRepository.findAll()) {
+            result.add(modelMapper.map(std,StudentDTO.class));
+        }
+        return result;
+    }
+
+    @Override
+    public StudentDTO findById(int id) {
+        return modelMapper.map(studentRepository.findById(id).get(),StudentDTO.class);
     }
 }

@@ -1,5 +1,6 @@
 package miu.edu.AlumniTrackingSystem.service;
 
+import miu.edu.AlumniTrackingSystem.dto.DepartmentDTO;
 import miu.edu.AlumniTrackingSystem.dto.StudentDTO;
 import miu.edu.AlumniTrackingSystem.entity.Department;
 
@@ -12,6 +13,9 @@ public interface StudentService extends UserService<StudentDTO>{
 
     List<StudentDTO> getStudentByCity(String cityName);
 
-    List<StudentDTO> getStudentByMajor(Department major);
+    List<StudentDTO> getStudentByMajor(DepartmentDTO major);
+    StudentDTO getStudentByUserName(String username);
     List<StudentDTO> getStudentById(int id);
+    List<StudentDTO> findAll();
+    StudentDTO findById(int id);
 }
