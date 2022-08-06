@@ -13,5 +13,6 @@ public interface JobAdvertisementRepository extends CrudRepository<JobAdvertisme
     public List<JobAdvertisment> findJobAdvertisementsByAddress_State(String stateName);
     public List<JobAdvertisment> findJobAdvertisementsByAddress_City(String cityName);
     public List<JobAdvertisment> findJobAdvertisementsByCompanyName(String companyName);
+    public List<JobAdvertisment> findJobAdvertismentByStudentUsername(String username);
   // public JobAdvertisment findById(int id);
 }

@@ -1,14 +1,17 @@
 package miu.edu.AlumniTrackingSystem.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Data
 @Entity
-@PrimaryKeyJoinColumns({
-        @PrimaryKeyJoinColumn(name="User_Id",referencedColumnName="id")})
+@NoArgsConstructor
+@AllArgsConstructor
+@PrimaryKeyJoinColumns({@PrimaryKeyJoinColumn(name="User_Id",referencedColumnName="id")})
 public class Student extends User{
 
     private double gpa;

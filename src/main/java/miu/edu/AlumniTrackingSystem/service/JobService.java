@@ -12,7 +12,7 @@ public interface JobService {
     public List<StudentDTO> getApplicants(Integer jobId);
     public void advertiseJob();
     public void applyToJob(Integer jobId,String username);
-    JobAdvertisementGetDTO getById(int id);
+    JobADvertisementGetDTO getById(int id);
     public List<JobAdvertisementDTO> getJobAdvertisements(int limit, int offset);
     public List<JobAdvertisementDTO> getAllJobAdvertisements(String username);
     Page<JobAdvertisment> getAllJobAdvPaginated(PagingRequest pagingRequest);

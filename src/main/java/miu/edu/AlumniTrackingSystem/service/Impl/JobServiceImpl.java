@@ -3,9 +3,12 @@ package miu.edu.AlumniTrackingSystem.service.Impl;
 
 import lombok.AllArgsConstructor;
 import miu.edu.AlumniTrackingSystem.Exceptions.RecordNotFoundException;
+import miu.edu.AlumniTrackingSystem.configuration.Utils;
 import miu.edu.AlumniTrackingSystem.dto.*;
+import miu.edu.AlumniTrackingSystem.entity.Department;
 import miu.edu.AlumniTrackingSystem.entity.JobAdvertisment;
 import miu.edu.AlumniTrackingSystem.entity.JobApplication;
+import miu.edu.AlumniTrackingSystem.entity.Student;
 import miu.edu.AlumniTrackingSystem.repository.JobAdvertisementRepository;
 import miu.edu.AlumniTrackingSystem.repository.JobApplicationRepository;
 import miu.edu.AlumniTrackingSystem.repository.JobRepository;
@@ -13,7 +16,6 @@ import miu.edu.AlumniTrackingSystem.repository.StudentRepository;
 import miu.edu.AlumniTrackingSystem.service.JobAttachmentService;
 import miu.edu.AlumniTrackingSystem.service.JobService;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,7 +29,7 @@ import java.util.List;
 @Transactional
 public class JobServiceImpl implements JobService {
 
-    private final JobRepository jobRepository;
+  // private final JobRepository jobRepository;
     private final JobAdvertisementRepository jobAdvertisementRepository;
 
     private final JobApplicationRepository jobApplicationRepository;
@@ -56,12 +58,15 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public void applyToJob(Integer jobId, String username) {
-
+        Student st = studentRepository.getStudentsByUsername(username);
+        JobAdvertisment job=jobAdvertisementRepository.findById(jobId).get();
+        //job.getJobApplications().add(st);
+        st.getJobApplications().add(new JobApplication(st,job));
     }
 
     @Override
-    public JobAdvertisementGetDTO getById(int id) {
-        return null;
+    public JobADvertisementGetDTO getById(int id) {
+        return modelMapper.map(jobAdvertisementRepository.findById(id), JobADvertisementGetDTO.class);
     }
 
     @Override
@@ -71,6 +76,16 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public List<JobAdvertisementDTO> getAllJobAdvertisements(String username) {
+
+//        @Override
+//        public List<StudentDTO> getStudentByMajor(DepartmentDTO major) {
+//            Department dept =modelMapper.map(major,Department.class);
+//            return Utils.mapList(studentRepository.getStudentsByMajor(dept),StudentDTO.class);
+//        }
+
+        JobAdvertisment jb = modelMapper.map(username, JobAdvertisment.class);
+
+        //return jobAdvertisementRepository.findJobAdvertismentByStudentUsername(username);
         return null;
     }
 

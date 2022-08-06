@@ -10,6 +10,9 @@ import javax.persistence.ManyToOne;
 @Entity
 @Data
 public class Comment extends BaseClass{
+
+    private String discription;
+
     @ManyToOne
     private Student student;
 
