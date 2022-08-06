@@ -34,10 +34,6 @@ public class JobAttachmentServiceImpl implements JobAttachmentService {
 
     @Autowired
     private JobAdvertisementRepository jobAdvertisementRepository;
-  //  private final Path rootLocation;
-
-  //  @Autowired
-   // private StorageProperties storageproperties;
 
     @Override
     public void store(MultipartFile file) {
@@ -120,7 +116,7 @@ public class JobAttachmentServiceImpl implements JobAttachmentService {
         JobAttachment jobAttachment = new JobAttachment();
       //  jobAttachment.setUrl(getURLofFileupload(rootLocation)+ "/" +file.getOriginalFilename());
         jobAttachment.setName(file.getOriginalFilename());
-        JobAdvertisment ja = jobAdvertisementRepository.findById(id).orElse(null);
+        JobAdvertisment ja = jobAdvertisementRepository.findById(id).get();
         jobAttachment.setJobAdvertisment(ja);
         System.out.println(jobAttachment.getUrl());
 
