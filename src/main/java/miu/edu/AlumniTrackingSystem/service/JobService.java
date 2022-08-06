@@ -9,22 +9,14 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 public interface JobService {
-    public List<StudentDTO> getApplicants(Integer jobId);
-    public void advertiseJob();
-    public void applyToJob(Integer jobId,String username);
-    JobADvertisementGetDTO getById(int id);
-    public List<JobAdvertisementDTO> getJobAdvertisements(int limit, int offset);
-    public List<JobAdvertisementDTO> getAllJobAdvertisements(String username);
+    List<StudentDTO> getApplicants(Integer jobId);
+    void applyToJob(Integer jobId,String username);
+    JobAdvertisementDTO getById(int id);
+    List<JobAdvertisementDTO> getJobAdvertisements(int limit, int offset);
+    List<JobAdvertisementDTO> getAllJobAdvertisements(String username);
     Page<JobAdvertisment> getAllJobAdvPaginated(PagingRequest pagingRequest);
-
-    List<JobAdvertisementDTO> filter(String tag, String state, String city, String companyName);
-
     void saveJobAdvertisement(JobAdvertisementDTO jobAdvertisement , MultipartFile file) throws RecordNotFoundException;
 
-    List<JobAdvertisment> getJobAdvByMostRecentApplied();
-
-    void deleteEmployeeById(Integer id) throws RecordNotFoundException;
+    void deleteJobAdvertismentByOwnerId(Integer id) throws RecordNotFoundException;
     List<TagCountDTO> countTotalTagsByName();
-
-    // List<JobCount> countTotalJobsByCompanyName();
 }
