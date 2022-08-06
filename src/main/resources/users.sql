@@ -1,0 +1,3 @@
+INSERT INTO public.users (id, is_deleted, last_logged_in_at, active, email, firstname, lastname, password, username) VALUES (1, false, '2022-08-06 17:08:50.000000', true, 'sally@gmail.com', 'Sally', 'Haddad', 'Sally123', 'Sally');
+INSERT INTO public.users (id, is_deleted, last_logged_in_at, active, email, firstname, lastname, password, username) VALUES (2, false, '2022-08-06 17:09:35.000000', true, 'David@gmail.com', 'David', 'Mousa', 'David123', 'David');
+INSERT INTO public.users (id, is_deleted, last_logged_in_at, active, email, firstname, lastname, password, username) VALUES (3, true, '2022-08-06 17:10:14.000000', false, 'Laith@gmail.com', 'Laith', 'Nassar', 'Laith123', 'Laith');
