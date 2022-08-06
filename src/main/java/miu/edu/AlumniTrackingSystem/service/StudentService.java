@@ -2,7 +2,6 @@ package miu.edu.AlumniTrackingSystem.service;
 
 import miu.edu.AlumniTrackingSystem.dto.DepartmentDTO;
 import miu.edu.AlumniTrackingSystem.dto.StudentDTO;
-import miu.edu.AlumniTrackingSystem.entity.Department;
 
 import java.util.List;
 

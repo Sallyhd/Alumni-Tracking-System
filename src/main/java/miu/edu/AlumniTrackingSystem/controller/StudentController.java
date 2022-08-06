@@ -5,14 +5,12 @@ import miu.edu.AlumniTrackingSystem.dto.JobAdvAndFileDTO;
 import miu.edu.AlumniTrackingSystem.dto.StudentDTO;
 import miu.edu.AlumniTrackingSystem.entity.JobAdvertisment;
 import miu.edu.AlumniTrackingSystem.service.DepartmentService;
-import miu.edu.AlumniTrackingSystem.service.JobAdvertisementService;
 import miu.edu.AlumniTrackingSystem.service.JobService;
 import miu.edu.AlumniTrackingSystem.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/students")
