@@ -1,14 +1,15 @@
-package miu.edu.AlumniTrackingSystem.config;
+package miu.edu.AlumniTrackingSystem.configuration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 @Component
 @ConfigurationProperties("storage")
-public class Storage {
-    private String location = "uploaded-files";
+public class StorageProperties {
+    private static String location = "uploaded-files";
 
-    public String getLocation() {
+    public static String getLocation() {
         return location;
     }
 

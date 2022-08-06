@@ -8,6 +8,9 @@ import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 @Configuration
 public class Config {
     @Bean
@@ -23,4 +26,6 @@ public class Config {
                 .paths(PathSelectors.any())
                 .build();
     }
+
+
 }
