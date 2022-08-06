@@ -2,11 +2,11 @@ package miu.edu.AlumniTrackingSystem.service.Impl;
 
 
 import lombok.AllArgsConstructor;
-import miu.edu.AlumniTrackingSystem.Exceptions.RecordNotFoundException;
 import miu.edu.AlumniTrackingSystem.configuration.Utils;
 import miu.edu.AlumniTrackingSystem.dto.*;
 import miu.edu.AlumniTrackingSystem.entity.JobAdvertisment;
 import miu.edu.AlumniTrackingSystem.entity.JobApplication;
+import miu.edu.AlumniTrackingSystem.entity.JobAttachment;
 import miu.edu.AlumniTrackingSystem.entity.Student;
 import miu.edu.AlumniTrackingSystem.repository.JobAdvertisementRepository;
 import miu.edu.AlumniTrackingSystem.repository.JobApplicationRepository;
@@ -19,18 +19,20 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 @Transactional
 public class JobServiceImpl implements JobService {
     private final JobAdvertisementRepository jobAdvertisementRepository;
+
     private final JobApplicationRepository jobApplicationRepository;
     private final JobAttachmentService jobAttachmentService;
     private final StudentRepository studentRepository;
@@ -57,6 +59,7 @@ public class JobServiceImpl implements JobService {
     public JobAdvertisementDTO getById(int id) {
         return modelMapper.map(jobAdvertisementRepository.findById(id), JobAdvertisementDTO.class);
     }
+
     @Override
     public List<JobAdvertisementDTO> getAllJobAdvertisements(String username) {
         return Utils.mapList(jobAdvertisementRepository.findJobAdvertismentByStudentUsername(username),JobAdvertisementDTO.class);
@@ -73,18 +76,25 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public void saveJobAdvertisement(JobAdvertisementDTO jobAdvertisement, MultipartFile file) throws RecordNotFoundException {
+    public void saveJobAdvertisement(JobAdvertisementDTO jobAdvertisement, MultipartFile file) {
+
+        Optional<JobAdvertisment> jobAdv = jobAdvertisementRepository.findById(jobAdvertisement.getId());
+
+        if (!jobAdv.isPresent()) {
+            JobAdvertisment newJobAdvertisement = new JobAdvertisment();
+            newJobAdvertisement = jobAdvertisementRepository.save(
+                    modelMapper.map(jobAdvertisement, JobAdvertisment.class));
+            JobAttachment jb = jobAttachmentService.save(newJobAdvertisement.getId(), file);
+            newJobAdvertisement.setJobAttatchments(Arrays.asList(jb));
+        } else {
+            jobAdvertisementRepository.save(modelMapper.map(jobAdvertisement, JobAdvertisment.class));
+        }
 
     }
 
     @Override
-    public void deleteJobAdvertismentByOwnerId(Integer id) throws RecordNotFoundException {
-
-    }
-
-    @Override
-    public List<TagCountDTO> countTotalTagsByName() {
-        return null;
+    public void deleteJobAdvertismentByOwnerId(Integer id) {
+        jobAdvertisementRepository.deleteJobAdvertismentByStudentId(id);
     }
 
     @Override

@@ -65,11 +65,7 @@ public class StudentController {
     }
     @PostMapping("/JobAdv")
     public ResponseEntity addJobAdv(@RequestBody JobAdvAndFileDTO advAndFileDTO){
-        try {
-            jobService.saveJobAdvertisement(advAndFileDTO.getJobAdvertisementDTO(), advAndFileDTO.getFile());
-            return ResponseEntity.ok(HttpStatus.CREATED);
-        }catch(Exception ex){
-            return ResponseEntity.ok(HttpStatus.BAD_REQUEST);
-        }
+        jobService.saveJobAdvertisement(advAndFileDTO.getJobAdvertisementDTO(), advAndFileDTO.getFile());
+        return ResponseEntity.ok(HttpStatus.CREATED);
     }
 }

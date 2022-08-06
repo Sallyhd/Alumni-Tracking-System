@@ -18,4 +18,5 @@ public class Comment extends BaseClass{
 
     @ManyToOne
     private Faculty faculty;
+
 }

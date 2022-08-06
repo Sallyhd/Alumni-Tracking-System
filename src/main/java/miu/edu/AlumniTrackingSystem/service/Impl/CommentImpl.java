@@ -65,15 +65,14 @@ public class CommentImpl implements CommentService {
 
         var comment = commentRepository.findAll();
         var result = new ArrayList<CommentDTO>();
-        for(Comment comment1: comment){
+        for(Comment comment1: comment) {
 
-            CommentDTO commentDTO = new CommentDTO();
-            commentDTO = modelMapper.map(comment1, CommentDTO.class);
-            result.add(commentDTO);
+            if (!comment1.isDeleted()) {
+                CommentDTO commentDTO = new CommentDTO();
+                commentDTO = modelMapper.map(comment1, CommentDTO.class);
+                result.add(commentDTO);
+            }
         }
-
-
-
         return result;
     }
 

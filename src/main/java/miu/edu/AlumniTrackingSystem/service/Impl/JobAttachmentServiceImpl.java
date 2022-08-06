@@ -1,8 +1,9 @@
 package miu.edu.AlumniTrackingSystem.service.Impl;
 
+
 import miu.edu.AlumniTrackingSystem.Exceptions.StorageException;
 import miu.edu.AlumniTrackingSystem.Exceptions.StorageFileNotFoundException;
-import miu.edu.AlumniTrackingSystem.configuration.Config;
+import miu.edu.AlumniTrackingSystem.configuration.StorageProperties;
 import miu.edu.AlumniTrackingSystem.entity.JobAdvertisment;
 import miu.edu.AlumniTrackingSystem.entity.JobAttachment;
 import miu.edu.AlumniTrackingSystem.repository.JobAdvertisementRepository;
@@ -33,44 +34,51 @@ public class JobAttachmentServiceImpl implements JobAttachmentService {
     @Autowired
     private JobAdvertisementRepository jobAdvertisementRepository;
 
+    private final Path rootLocation;
+
+    @Autowired
+    public JobAttachmentServiceImpl(JobAttachmentRepository jobAttachmentRepository , StorageProperties properties )
+    {
+        this.jobAttachmentRepository = jobAttachmentRepository;
+        this.rootLocation = Paths.get(properties.getLocation());
+    }
     @Override
     public void store(MultipartFile file) {
-//        try {
-//            if (file.isEmpty()) {
-//                throw new StorageException("Failed to store empty file.");
-//            }
-//            Path destinationFile = this.rootLocation.resolve(
-//                            Paths.get(file.getOriginalFilename()))
-//                    .normalize().toAbsolutePath();
-//            if (!destinationFile.getParent().equals(this.rootLocation.toAbsolutePath())) {
-//                // This is a security check
-//                throw new StorageException(
-//                        "Cannot store file outside current directory.");
-//            }
-//            try (InputStream inputStream = file.getInputStream()) {
-//                Files.copy(inputStream, destinationFile,
-//                        StandardCopyOption.REPLACE_EXISTING);
-//            }
-//        }
-//        catch (IOException e) {
-//            throw new StorageException("Failed to store file.", e);
-//        }
+        try {
+            if (file.isEmpty()) {
+                throw new StorageException("Failed to store empty file.");
+            }
+            Path destinationFile = this.rootLocation.resolve(
+                            Paths.get(file.getOriginalFilename()))
+                    .normalize().toAbsolutePath();
+            if (!destinationFile.getParent().equals(this.rootLocation.toAbsolutePath())) {
+                // This is a security check
+                throw new StorageException(
+                        "Cannot store file outside current directory.");
+            }
+            try (InputStream inputStream = file.getInputStream()) {
+                Files.copy(inputStream, destinationFile,
+                        StandardCopyOption.REPLACE_EXISTING);
+            }
+        }
+        catch (IOException e) {
+            throw new StorageException("Failed to store file.", e);
+        }
     }
 
 
     @Override
     public String getFileNameById (int id)
     {
-        return "";
-      //return jobAttachmentRepository.findNameByJobAdvertisementId(id);
+      return jobAttachmentRepository.findNameByJobAdvertisementId(id);
 
     }
 
 
     @Override
     public Path load(String filename) {
-      //  return rootLocation.resolve(filename);
-    return null;
+//          return rootLocation.resolve(filename);
+        return null;
     }
 
     @Override
@@ -94,17 +102,17 @@ public class JobAttachmentServiceImpl implements JobAttachmentService {
 
     @Override
     public void deleteAll() {
-      //  FileSystemUtils.deleteRecursively(rootLocation.toFile());
+        FileSystemUtils.deleteRecursively(rootLocation.toFile());
     }
 
     @Override
     public void init() {
-//        try {
-//            Files.createDirectories(rootLocation);
-//        }
-//        catch (IOException e) {
-//            throw new StorageException("Could not initialize storage", e);
-//        }
+        try {
+            Files.createDirectories(rootLocation);
+        }
+        catch (IOException e) {
+            throw new StorageException("Could not initialize storage", e);
+        }
     }
 
     @Override
@@ -113,7 +121,7 @@ public class JobAttachmentServiceImpl implements JobAttachmentService {
 
         System.out.println("Here here");
         JobAttachment jobAttachment = new JobAttachment();
-      //  jobAttachment.setUrl(getURLofFileupload(rootLocation)+ "/" +file.getOriginalFilename());
+        jobAttachment.setUrl(getURLofFileupload(rootLocation)+ "/" +file.getOriginalFilename());
         jobAttachment.setName(file.getOriginalFilename());
         JobAdvertisment ja = jobAdvertisementRepository.findById(id).get();
         jobAttachment.setJobAdvertisment(ja);
@@ -132,7 +140,7 @@ public class JobAttachmentServiceImpl implements JobAttachmentService {
 
             Arrays.asList(files).stream().forEach(file -> {
                 JobAttachment jobAttachment = new JobAttachment();
-               // jobAttachment.setUrl(getURLofFileupload(rootLocation)+ "/" +file.getOriginalFilename());
+                jobAttachment.setUrl(getURLofFileupload(rootLocation)+ "/" +file.getOriginalFilename());
 
                 JobAdvertisment ja = jobAdvertisementRepository.findById(id).orElse(null);
                 jobAttachment.setJobAdvertisment(ja);

@@ -15,5 +15,7 @@ public interface JobAdvertisementRepository extends PagingAndSortingRepository<J
     public List<JobAdvertisment> findJobAdvertisementsByAddress_City(String cityName);
     public List<JobAdvertisment> findJobAdvertisementsByCompanyName(String companyName);
     public List<JobAdvertisment> findJobAdvertismentByStudentUsername(String username);
+
+    public void deleteJobAdvertismentByStudentId(int id);
   // public JobAdvertisment findById(int id);
 }
