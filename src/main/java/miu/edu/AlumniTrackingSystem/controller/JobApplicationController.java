@@ -2,7 +2,6 @@ package miu.edu.AlumniTrackingSystem.controller;
 
 import lombok.AllArgsConstructor;
 import miu.edu.AlumniTrackingSystem.dto.JobApplicationDTO;
-import miu.edu.AlumniTrackingSystem.service.JobService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.keycloak.KeycloakPrincipal;
@@ -15,13 +14,14 @@ import java.util.List;
 @AllArgsConstructor
 @CrossOrigin("*")
 public class JobApplicationController {
-    private final JobService jobService;
+    //private final JobService jobService;
 
     //    -------------------- get applicants -------------------
 
     @GetMapping("/applicants")
     public List<JobApplicationDTO> getApplicants(@RequestBody int jobId){
-        return null;//jobService.getApplicants(jobId);
+       // return jobService.getApplicants(jobId);
+        return  null;
     }
 
 
@@ -31,7 +31,7 @@ public class JobApplicationController {
 
         KeycloakPrincipal user=(KeycloakPrincipal)principal;
         String username=user.getKeycloakSecurityContext().getToken().getPreferredUsername();
-        //jobService.applyToJob(jobId,username);
+       // jobService.applyToJob(jobId,username);
         return ResponseEntity.ok().build();
     }
 

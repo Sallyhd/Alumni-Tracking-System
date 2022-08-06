@@ -2,13 +2,14 @@ package miu.edu.AlumniTrackingSystem.service.Impl;
 
 import miu.edu.AlumniTrackingSystem.Exceptions.StorageException;
 import miu.edu.AlumniTrackingSystem.Exceptions.StorageFileNotFoundException;
-import miu.edu.AlumniTrackingSystem.config.Storage;
+import miu.edu.AlumniTrackingSystem.configuration.Config;
+import miu.edu.AlumniTrackingSystem.configuration.StorageProperties;
+import miu.edu.AlumniTrackingSystem.configuration.StorageProperties;
 import miu.edu.AlumniTrackingSystem.entity.JobAdvertisment;
 import miu.edu.AlumniTrackingSystem.entity.JobAttachment;
 import miu.edu.AlumniTrackingSystem.repository.JobAdvertisementRepository;
 import miu.edu.AlumniTrackingSystem.repository.JobAttachmentRepository;
 import miu.edu.AlumniTrackingSystem.service.JobAttachmentService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -32,51 +33,49 @@ public class JobAttachmentServiceImpl implements JobAttachmentService {
 
 
     @Autowired
-    private JobAdvertisementRepository jobAdvertisementRepo;
-    private final Path rootLocation;
+    private JobAdvertisementRepository jobAdvertisementRepository;
+  //  private final Path rootLocation;
 
+  //  @Autowired
+   // private StorageProperties storageproperties;
 
-    @Autowired
-    public JobAttachmentServiceImpl(JobAttachmentRepository jobAttachmentRepository , Storage properties )
-    {
-        this.jobAttachmentRepository = jobAttachmentRepository;
-        this.rootLocation = Paths.get(properties.getLocation());
-    }
     @Override
     public void store(MultipartFile file) {
-        try {
-            if (file.isEmpty()) {
-                throw new StorageException("Failed to store empty file.");
-            }
-            Path destinationFile = this.rootLocation.resolve(
-                            Paths.get(file.getOriginalFilename()))
-                    .normalize().toAbsolutePath();
-            if (!destinationFile.getParent().equals(this.rootLocation.toAbsolutePath())) {
-                // This is a security check
-                throw new StorageException(
-                        "Cannot store file outside current directory.");
-            }
-            try (InputStream inputStream = file.getInputStream()) {
-                Files.copy(inputStream, destinationFile,
-                        StandardCopyOption.REPLACE_EXISTING);
-            }
-        }
-        catch (IOException e) {
-            throw new StorageException("Failed to store file.", e);
-        }
+//        try {
+//            if (file.isEmpty()) {
+//                throw new StorageException("Failed to store empty file.");
+//            }
+//            Path destinationFile = this.rootLocation.resolve(
+//                            Paths.get(file.getOriginalFilename()))
+//                    .normalize().toAbsolutePath();
+//            if (!destinationFile.getParent().equals(this.rootLocation.toAbsolutePath())) {
+//                // This is a security check
+//                throw new StorageException(
+//                        "Cannot store file outside current directory.");
+//            }
+//            try (InputStream inputStream = file.getInputStream()) {
+//                Files.copy(inputStream, destinationFile,
+//                        StandardCopyOption.REPLACE_EXISTING);
+//            }
+//        }
+//        catch (IOException e) {
+//            throw new StorageException("Failed to store file.", e);
+//        }
     }
 
 
     @Override
     public String getFileNameById (int id)
     {
-        return jobAttachmentRepository.findNameByJobAdvertisementId(id);
+      return jobAttachmentRepository.findNameByJobAdvertisementId(id);
+
     }
 
 
     @Override
     public Path load(String filename) {
-        return rootLocation.resolve(filename);
+      //  return rootLocation.resolve(filename);
+    return null;
     }
 
     @Override
@@ -100,17 +99,17 @@ public class JobAttachmentServiceImpl implements JobAttachmentService {
 
     @Override
     public void deleteAll() {
-        FileSystemUtils.deleteRecursively(rootLocation.toFile());
+      //  FileSystemUtils.deleteRecursively(rootLocation.toFile());
     }
 
     @Override
     public void init() {
-        try {
-            Files.createDirectories(rootLocation);
-        }
-        catch (IOException e) {
-            throw new StorageException("Could not initialize storage", e);
-        }
+//        try {
+//            Files.createDirectories(rootLocation);
+//        }
+//        catch (IOException e) {
+//            throw new StorageException("Could not initialize storage", e);
+//        }
     }
 
     @Override
@@ -119,9 +118,9 @@ public class JobAttachmentServiceImpl implements JobAttachmentService {
 
         System.out.println("Here here");
         JobAttachment jobAttachment = new JobAttachment();
-        jobAttachment.setUrl(getURLofFileupload(rootLocation)+ "/" +file.getOriginalFilename());
+      //  jobAttachment.setUrl(getURLofFileupload(rootLocation)+ "/" +file.getOriginalFilename());
         jobAttachment.setName(file.getOriginalFilename());
-        JobAdvertisment ja = jobAdvertisementRepo.findById(id).orElse(null);
+        JobAdvertisment ja = jobAdvertisementRepository.findById(id).orElse(null);
         jobAttachment.setJobAdvertisment(ja);
         System.out.println(jobAttachment.getUrl());
 
@@ -138,9 +137,9 @@ public class JobAttachmentServiceImpl implements JobAttachmentService {
 
             Arrays.asList(files).stream().forEach(file -> {
                 JobAttachment jobAttachment = new JobAttachment();
-                jobAttachment.setUrl(getURLofFileupload(rootLocation)+ "/" +file.getOriginalFilename());
+               // jobAttachment.setUrl(getURLofFileupload(rootLocation)+ "/" +file.getOriginalFilename());
 
-                JobAdvertisment ja = jobAdvertisementRepo.findById(id).orElse(null);
+                JobAdvertisment ja = jobAdvertisementRepository.findById(id).orElse(null);
                 jobAttachment.setJobAdvertisment(ja);
                 System.out.println(jobAttachment.getUrl());
 
