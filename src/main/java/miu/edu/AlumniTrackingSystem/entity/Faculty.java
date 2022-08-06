@@ -7,7 +7,6 @@ import java.util.List;
 
 @Entity
 @Data
-//Test
 @PrimaryKeyJoinColumns({
         @PrimaryKeyJoinColumn(name="User_Id",referencedColumnName="id")})
 public class Faculty extends  User{

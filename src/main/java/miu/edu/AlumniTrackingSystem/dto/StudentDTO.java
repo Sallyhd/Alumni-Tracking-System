@@ -11,8 +11,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class StudentDTO {
-    private int id;
+public class StudentDTO extends UserDTO{
     private double gpa;
     private Address address;
 

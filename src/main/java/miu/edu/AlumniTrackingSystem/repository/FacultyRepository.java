@@ -6,4 +6,5 @@ import miu.edu.AlumniTrackingSystem.entity.Faculty;
 
 @Repository
 public interface FacultyRepository extends CrudRepository<Faculty,Integer> {
+    Faculty getFacultyByFirstnameAndLastname(String fname,String lname);
 }

@@ -27,7 +27,7 @@ public class StudentController {
         return  ResponseEntity.ok(HttpStatus.CREATED);
     }
 
-    @PostMapping("/edit")
+    @PutMapping("/edit")
     public ResponseEntity editProfile(@RequestBody StudentDTO student){
         studentService.editProfile(student);
         return  ResponseEntity.ok(HttpStatus.OK);
