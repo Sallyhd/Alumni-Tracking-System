@@ -17,13 +17,13 @@ import java.util.List;
 @AllArgsConstructor
 @CrossOrigin("*")
 public class JobApplicationController {
-    //private final JobService jobService;
+    private final JobService jobService;
 
     //    -------------------- get applicants -------------------
 
     @GetMapping("/applicants")
     public List<StudentDTO> getApplicants(@RequestBody int jobId){
-        return jobService.getApplicants(jobId);
+        return  jobService.getApplicants(jobId);
     }
 
 

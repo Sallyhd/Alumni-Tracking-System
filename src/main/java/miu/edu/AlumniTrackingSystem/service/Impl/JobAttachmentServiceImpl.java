@@ -3,8 +3,6 @@ package miu.edu.AlumniTrackingSystem.service.Impl;
 import miu.edu.AlumniTrackingSystem.Exceptions.StorageException;
 import miu.edu.AlumniTrackingSystem.Exceptions.StorageFileNotFoundException;
 import miu.edu.AlumniTrackingSystem.configuration.Config;
-import miu.edu.AlumniTrackingSystem.configuration.StorageProperties;
-import miu.edu.AlumniTrackingSystem.configuration.StorageProperties;
 import miu.edu.AlumniTrackingSystem.entity.JobAdvertisment;
 import miu.edu.AlumniTrackingSystem.entity.JobAttachment;
 import miu.edu.AlumniTrackingSystem.repository.JobAdvertisementRepository;
@@ -63,7 +61,8 @@ public class JobAttachmentServiceImpl implements JobAttachmentService {
     @Override
     public String getFileNameById (int id)
     {
-      return jobAttachmentRepository.findNameByJobAdvertisementId(id);
+        return "";
+      //return jobAttachmentRepository.findNameByJobAdvertisementId(id);
 
     }
 
