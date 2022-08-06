@@ -12,11 +12,15 @@ public interface JobService {
     List<StudentDTO> getApplicants(Integer jobId);
     void applyToJob(Integer jobId,String username);
     JobAdvertisementDTO getById(int id);
-    List<JobAdvertisementDTO> getJobAdvertisements(int limit, int offset);
     List<JobAdvertisementDTO> getAllJobAdvertisements(String username);
     Page<JobAdvertisment> getAllJobAdvPaginated(PagingRequest pagingRequest);
     void saveJobAdvertisement(JobAdvertisementDTO jobAdvertisement , MultipartFile file) throws RecordNotFoundException;
 
     void deleteJobAdvertismentByOwnerId(Integer id) throws RecordNotFoundException;
     List<TagCountDTO> countTotalTagsByName();
+
+    List<JobAdvertisment> findJobAdvertisementsByTags_Name(String tagName);
+    List<JobAdvertisment> findJobAdvertisementsByAddress_State(String stateName);
+    List<JobAdvertisment> findJobAdvertisementsByAddress_City(String cityName);
+    List<JobAdvertisment> findJobAdvertisementsByCompanyName(String companyName);
 }

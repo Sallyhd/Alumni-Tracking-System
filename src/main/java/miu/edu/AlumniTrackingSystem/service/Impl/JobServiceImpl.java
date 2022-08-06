@@ -15,19 +15,22 @@ import miu.edu.AlumniTrackingSystem.service.JobAttachmentService;
 import miu.edu.AlumniTrackingSystem.service.JobService;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 @AllArgsConstructor
 @Transactional
 public class JobServiceImpl implements JobService {
     private final JobAdvertisementRepository jobAdvertisementRepository;
-
     private final JobApplicationRepository jobApplicationRepository;
     private final JobAttachmentService jobAttachmentService;
     private final StudentRepository studentRepository;
@@ -44,10 +47,9 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public void applyToJob(Integer jobId, String username) {
+    public void applyToJob(Integer advId, String username) {
         Student st = studentRepository.getStudentsByUsername(username);
-        JobAdvertisment job=jobAdvertisementRepository.findById(jobId).get();
-        //job.getJobApplications().add(st);
+        JobAdvertisment job=jobAdvertisementRepository.findById(advId).get();
         st.getJobApplications().add(new JobApplication(st,job));
     }
 
@@ -55,12 +57,6 @@ public class JobServiceImpl implements JobService {
     public JobAdvertisementDTO getById(int id) {
         return modelMapper.map(jobAdvertisementRepository.findById(id), JobAdvertisementDTO.class);
     }
-
-    @Override
-    public List<JobAdvertisementDTO> getJobAdvertisements(int limit, int offset) {
-        return null;
-    }
-
     @Override
     public List<JobAdvertisementDTO> getAllJobAdvertisements(String username) {
         return Utils.mapList(jobAdvertisementRepository.findJobAdvertismentByStudentUsername(username),JobAdvertisementDTO.class);
@@ -68,7 +64,12 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public Page<JobAdvertisment> getAllJobAdvPaginated(PagingRequest pagingRequest) {
-        return null;
+            var direction = (pagingRequest.isAscending()) ? Sort.Direction.ASC : Sort.Direction.DESC;
+
+            var request = PageRequest
+                    .of(pagingRequest.getPage(), pagingRequest.getPageSize(), direction,pagingRequest.getSortBy());
+
+            return jobAdvertisementRepository.findAll(request);
     }
 
     @Override
@@ -84,5 +85,25 @@ public class JobServiceImpl implements JobService {
     @Override
     public List<TagCountDTO> countTotalTagsByName() {
         return null;
+    }
+
+    @Override
+    public List<JobAdvertisment> findJobAdvertisementsByTags_Name(String tagName) {
+        return jobAdvertisementRepository.findJobAdvertisementsByTags_Name(tagName);
+    }
+
+    @Override
+    public List<JobAdvertisment> findJobAdvertisementsByAddress_State(String stateName) {
+        return jobAdvertisementRepository.findJobAdvertisementsByAddress_State(stateName);
+    }
+
+    @Override
+    public List<JobAdvertisment> findJobAdvertisementsByAddress_City(String cityName) {
+        return jobAdvertisementRepository.findJobAdvertisementsByAddress_City(cityName);
+    }
+
+    @Override
+    public List<JobAdvertisment> findJobAdvertisementsByCompanyName(String companyName) {
+        return jobAdvertisementRepository.findJobAdvertisementsByCompanyName(companyName);
     }
 }
