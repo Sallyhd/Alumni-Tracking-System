@@ -14,9 +14,6 @@ public class Utils<T,S> {
     @Autowired
     private static ModelMapper modelMapper;
 
-//    public List<T> convertToListDto(List<S> lstObj, Type mapper) {
-//        return lstObj.stream().map(x -> modelMapper.map(x, mapper.getClass())).collect(Collectors.toList());
-//    }
     public static <S, T> List<T> mapList(List<S> source, Class<T> targetClass) {
         return source
             .stream()
