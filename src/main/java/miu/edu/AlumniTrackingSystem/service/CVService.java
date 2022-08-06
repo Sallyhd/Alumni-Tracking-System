@@ -1,4 +1,8 @@
 package miu.edu.AlumniTrackingSystem.service;
 
-public interface JobApplicationService {
+public interface CVService {
+
+
 }
+
+

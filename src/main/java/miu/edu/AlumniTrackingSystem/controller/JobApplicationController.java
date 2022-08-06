@@ -2,6 +2,9 @@ package miu.edu.AlumniTrackingSystem.controller;
 
 import lombok.AllArgsConstructor;
 import miu.edu.AlumniTrackingSystem.dto.JobApplicationDTO;
+
+import miu.edu.AlumniTrackingSystem.dto.StudentDTO;
+import miu.edu.AlumniTrackingSystem.service.JobService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.keycloak.KeycloakPrincipal;
@@ -19,9 +22,8 @@ public class JobApplicationController {
     //    -------------------- get applicants -------------------
 
     @GetMapping("/applicants")
-    public List<JobApplicationDTO> getApplicants(@RequestBody int jobId){
-       // return jobService.getApplicants(jobId);
-        return  null;
+    public List<StudentDTO> getApplicants(@RequestBody int jobId){
+        return jobService.getApplicants(jobId);
     }
 
 
