@@ -19,7 +19,7 @@ public interface JobService {
 
     List<JobAdvertisementDTO> filter(String tag, String state, String city, String companyName);
 
-    void saveJobAdvertisement(JobAdvertisment jobAdvertisement , MultipartFile file) throws RecordNotFoundException;
+    void saveJobAdvertisement(JobAdvertisementDTO jobAdvertisement , MultipartFile file) throws RecordNotFoundException;
 
     List<JobAdvertisment> getJobAdvByMostRecentApplied();
 

@@ -1,7 +1,7 @@
 package miu.edu.AlumniTrackingSystem.controller;
 
 import miu.edu.AlumniTrackingSystem.dto.FacultyDTO;
-import miu.edu.AlumniTrackingSystem.dto.StudentDTO;
+import miu.edu.AlumniTrackingSystem.service.CommentService;
 import miu.edu.AlumniTrackingSystem.service.FacultyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 public class FacultyController {
     @Autowired
     private FacultyService facultyService;
+    @Autowired
+    private CommentService commentService;
 
     @GetMapping
     public ResponseEntity getFacultyList(){
@@ -37,6 +39,11 @@ public class FacultyController {
     @GetMapping("/findByName")
     public ResponseEntity getFacultyByName(@RequestParam String fname, @RequestParam String lname){
         return  ResponseEntity.ok(facultyService.getFacultyByFirstnameAndLastname(fname,lname));
+    }
+
+    @GetMapping("/comments")
+    public ResponseEntity getComments(){
+        return  ResponseEntity.ok(commentService.getAllComment());
     }
 
 }

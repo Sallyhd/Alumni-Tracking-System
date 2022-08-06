@@ -100,7 +100,7 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public void saveJobAdvertisement(JobAdvertisment jobAdvertisement, MultipartFile file) throws RecordNotFoundException {
+    public void saveJobAdvertisement(JobAdvertisementDTO jobAdvertisement, MultipartFile file) throws RecordNotFoundException {
 
     }
 

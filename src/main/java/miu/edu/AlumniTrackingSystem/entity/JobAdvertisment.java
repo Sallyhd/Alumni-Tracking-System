@@ -25,6 +25,6 @@ public class JobAdvertisment extends BaseClass{
     @OneToOne
     private Address address;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST})
     private List<Tag> tags;
 }
