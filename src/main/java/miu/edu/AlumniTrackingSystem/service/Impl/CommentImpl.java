@@ -50,18 +50,7 @@ public class CommentImpl implements CommentService {
     @Override
     public List<CommentDTO> getAllComment() {
 
-//        @Override
-//        public List<AddressDto> findAll() {
-//            var address = addressRepository.findAll();
-//            var result = new ArrayList<AddressDto>();
-//            for (Address address1 : address){
-//                AddressDto addressDto = new AddressDto();
-//                addressDto = modelMapper.map(address1, AddressDto.class);
-//                result.add(addressDto);
-//
-//            }
-//            return result;
-//        }
+
 
         var comment = commentRepository.findAll();
         var result = new ArrayList<CommentDTO>();
