@@ -2,9 +2,12 @@ package miu.edu.AlumniTrackingSystem.service.Impl;
 
 import miu.edu.AlumniTrackingSystem.configuration.Utils;
 import miu.edu.AlumniTrackingSystem.dto.DepartmentDTO;
+import miu.edu.AlumniTrackingSystem.dto.JobExperienceDTO;
 import miu.edu.AlumniTrackingSystem.dto.StudentDTO;
 import miu.edu.AlumniTrackingSystem.entity.Department;
+import miu.edu.AlumniTrackingSystem.entity.JobExperience;
 import miu.edu.AlumniTrackingSystem.entity.Student;
+import miu.edu.AlumniTrackingSystem.repository.JobExperienceRepository;
 import miu.edu.AlumniTrackingSystem.repository.StudentRepository;
 import miu.edu.AlumniTrackingSystem.service.StudentService;
 import org.modelmapper.ModelMapper;
@@ -18,6 +21,9 @@ import java.util.List;
 public class StudentServiceImpl implements StudentService {
     @Autowired
     private StudentRepository studentRepository;
+
+    @Autowired
+    private JobExperienceRepository jobExperienceRepository;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -78,4 +84,12 @@ public class StudentServiceImpl implements StudentService {
     public StudentDTO findById(int id) {
         return modelMapper.map(studentRepository.findById(id).get(),StudentDTO.class);
     }
+
+    @Override
+    public void AddJobExperience(int stdId ,JobExperienceDTO jobExperienceDTO) {
+        Student std = studentRepository.findById(stdId).get();
+        std.getProfessionalExperiences().add(modelMapper.map(jobExperienceDTO, JobExperience.class));
+        studentRepository.save(std);
+    }
+
 }

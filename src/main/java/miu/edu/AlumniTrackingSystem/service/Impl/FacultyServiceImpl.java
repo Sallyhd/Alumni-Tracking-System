@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-
 public class FacultyServiceImpl implements FacultyService {
 
     @Autowired

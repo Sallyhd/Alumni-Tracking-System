@@ -12,6 +12,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class FacultyDTO extends UserDTO {
     @JsonManagedReference
     private List<CommentDTO> comments;

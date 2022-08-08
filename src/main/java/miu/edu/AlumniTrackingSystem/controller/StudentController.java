@@ -2,6 +2,7 @@ package miu.edu.AlumniTrackingSystem.controller;
 
 import miu.edu.AlumniTrackingSystem.dto.DepartmentDTO;
 import miu.edu.AlumniTrackingSystem.dto.JobAdvAndFileDTO;
+import miu.edu.AlumniTrackingSystem.dto.JobExperienceDTO;
 import miu.edu.AlumniTrackingSystem.dto.StudentDTO;
 import miu.edu.AlumniTrackingSystem.entity.JobAdvertisment;
 import miu.edu.AlumniTrackingSystem.service.DepartmentService;
@@ -32,10 +33,16 @@ public class StudentController {
         return  ResponseEntity.ok(HttpStatus.CREATED);
     }
 
-    @PutMapping("/edit")
-    public ResponseEntity editProfile(@RequestBody StudentDTO student){
+    @PutMapping("/{id}")
+    public ResponseEntity editProfile(@PathVariable int id,@RequestBody StudentDTO student){
         studentService.editProfile(student);
         return  ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    @PostMapping("/{id}")
+    public ResponseEntity AddJobExperience(@PathVariable int id, @RequestBody JobExperienceDTO jobExperienceDTO){
+        studentService.AddJobExperience(id,jobExperienceDTO);
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 
     @GetMapping
