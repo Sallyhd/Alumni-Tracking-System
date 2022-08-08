@@ -14,10 +14,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FacultyDTO extends UserDTO {
-    @JsonManagedReference
+    @JsonManagedReference(value="stdComm")
     private List<CommentDTO> comments;
-    @JsonManagedReference
+    @JsonManagedReference(value="faculty")
     private AddressDTO address;
-    @JsonManagedReference
     private DepartmentDTO department;
 }

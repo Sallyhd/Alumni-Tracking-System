@@ -19,11 +19,11 @@ public class JobAdvertisementDTO {
     private String benefits;
     private List<TagDTO> tags;
 
-    @JsonManagedReference(value = "attach")
+    @JsonManagedReference(value="test")
     private List<JobAttachmentDTO> jobAttachments;
-    @JsonBackReference(value = "advertisements")
+    @JsonBackReference(value="jobingAdv")
     private StudentDTO student;
-    @JsonManagedReference(value = "applicants")
+    @JsonManagedReference(value="applicants")
     private List<JobApplicationDTO> jobApplications;
 
     @JsonManagedReference(value = "dutyStation")

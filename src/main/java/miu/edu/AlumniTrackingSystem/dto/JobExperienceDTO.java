@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -14,10 +15,10 @@ public class JobExperienceDTO {
 
     private Integer id;
     private String companyName;
-    private LocalDate startDate;
-    private LocalDate finishDate;
+    private Date startDate;
+    private Date finishDate;
     private String description;
-    @JsonBackReference(value = "experiences")
+    @JsonBackReference(value = "experience")
     private StudentDTO student;
 
 }

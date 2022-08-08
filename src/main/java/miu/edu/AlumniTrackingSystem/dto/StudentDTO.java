@@ -1,5 +1,6 @@
 package miu.edu.AlumniTrackingSystem.dto;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,17 +13,18 @@ import java.util.List;
 @AllArgsConstructor
 public class StudentDTO extends UserDTO{
     private double gpa;
+    @JsonManagedReference(value = "mailingAddress")
     private AddressDTO address;
 
-    @JsonManagedReference
+    @JsonManagedReference(value="jobingAdv")
     private List<JobAdvertisementDTO> jobAdvertisments;
 
-    @JsonManagedReference
+
     private DepartmentDTO major;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "applications")
     private List<JobApplicationDTO> jobApplications;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "experience")
     private List<JobExperienceDTO> professionalExperiences;
 }

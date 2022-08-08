@@ -10,6 +10,7 @@ import miu.edu.AlumniTrackingSystem.service.JobService;
 import miu.edu.AlumniTrackingSystem.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +34,7 @@ public class StudentController {
         return  ResponseEntity.ok(HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(value = "/{id}" ,consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity editProfile(@PathVariable int id,@RequestBody StudentDTO student){
         studentService.editProfile(student);
         return  ResponseEntity.ok(HttpStatus.OK);
