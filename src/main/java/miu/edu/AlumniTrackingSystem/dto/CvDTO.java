@@ -15,10 +15,10 @@ public class CvDTO {
         private String email;
 
         private float gpa;
-        private List<JobExperience> professionalExperience;
+        private List<JobExperienceDTO> professionalExperience;
         private AddressDTO address;
 
-        private Department major;
+        private DepartmentDTO major;
     }
 
 

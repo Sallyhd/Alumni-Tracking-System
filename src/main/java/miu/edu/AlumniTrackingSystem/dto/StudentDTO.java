@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import miu.edu.AlumniTrackingSystem.entity.*;
 
 import java.util.List;
 
@@ -13,17 +12,17 @@ import java.util.List;
 @AllArgsConstructor
 public class StudentDTO extends UserDTO{
     private double gpa;
-    private Address address;
+    private AddressDTO address;
 
     @JsonManagedReference
-    private List<JobAdvertisment> jobAdvertisments;
+    private List<JobAdvertisementDTO> jobAdvertisments;
 
     @JsonManagedReference
-    private Department major;
+    private DepartmentDTO major;
 
     @JsonManagedReference
-    private List<JobApplication> jobApplications;
+    private List<JobApplicationDTO> jobApplications;
 
     @JsonManagedReference
-    private List<JobExperience> professionalExperiences;
+    private List<JobExperienceDTO> professionalExperiences;
 }

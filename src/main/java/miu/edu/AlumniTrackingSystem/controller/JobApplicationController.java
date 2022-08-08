@@ -7,7 +7,7 @@ import miu.edu.AlumniTrackingSystem.dto.StudentDTO;
 import miu.edu.AlumniTrackingSystem.service.JobService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.keycloak.KeycloakPrincipal;
+//import org.keycloak.KeycloakPrincipal;
 
 import java.security.Principal;
 import java.util.List;
@@ -31,8 +31,8 @@ public class JobApplicationController {
     @PostMapping("/apply")
     public ResponseEntity applyToJob(@RequestParam Integer jobId, Principal principal){
 
-        KeycloakPrincipal user=(KeycloakPrincipal)principal;
-        String username=user.getKeycloakSecurityContext().getToken().getPreferredUsername();
+//        KeycloakPrincipal user=(KeycloakPrincipal)principal;
+//        String username=user.getKeycloakSecurityContext().getToken().getPreferredUsername();
        // jobService.applyToJob(jobId,username);
         return ResponseEntity.ok().build();
     }
@@ -41,8 +41,8 @@ public class JobApplicationController {
 
     @GetMapping("")
     public ResponseEntity<JobApplicationDTO> getJob(@RequestParam Integer jobId, Principal principal){
-        KeycloakPrincipal user=(KeycloakPrincipal)principal;
-        String username=user.getKeycloakSecurityContext().getToken().getPreferredUsername();
+//        KeycloakPrincipal user=(KeycloakPrincipal)principal;
+//        String username=user.getKeycloakSecurityContext().getToken().getPreferredUsername();
         return null;
     }
 
