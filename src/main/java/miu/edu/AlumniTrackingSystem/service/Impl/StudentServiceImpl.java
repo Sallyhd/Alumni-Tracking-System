@@ -2,9 +2,11 @@ package miu.edu.AlumniTrackingSystem.service.Impl;
 
 import miu.edu.AlumniTrackingSystem.configuration.Utils;
 import miu.edu.AlumniTrackingSystem.dto.DepartmentDTO;
+import miu.edu.AlumniTrackingSystem.dto.JobAdvertisementDTO;
 import miu.edu.AlumniTrackingSystem.dto.JobExperienceDTO;
 import miu.edu.AlumniTrackingSystem.dto.StudentDTO;
 import miu.edu.AlumniTrackingSystem.entity.Department;
+import miu.edu.AlumniTrackingSystem.entity.JobAdvertisment;
 import miu.edu.AlumniTrackingSystem.entity.JobExperience;
 import miu.edu.AlumniTrackingSystem.entity.Student;
 import miu.edu.AlumniTrackingSystem.repository.JobExperienceRepository;
@@ -42,22 +44,38 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<StudentDTO> getStudentByState(String state) {
-        return Utils.mapList(studentRepository.getStudentByAddress_State(state),StudentDTO.class);
+        List<StudentDTO> result = new ArrayList<StudentDTO>();
+        for (Student std : studentRepository.getStudentByAddress_State(state)) {
+            result.add(modelMapper.map(std,StudentDTO.class));
+        }
+        return result;
     }
     @Override
     public List<StudentDTO> getStudentByName(String name) {
-        return Utils.mapList(studentRepository.getStudentsByFirstnameContaining(name),StudentDTO.class);
+        List<StudentDTO> result = new ArrayList<StudentDTO>();
+        for (Student std : studentRepository.getStudentsByFirstnameContaining(name)) {
+            result.add(modelMapper.map(std,StudentDTO.class));
+        }
+        return result;
     }
 
     @Override
     public List<StudentDTO> getStudentByCity(String cityName) {
-        return Utils.mapList(studentRepository.getStudentByAddress_City(cityName),StudentDTO.class);
+        List<StudentDTO> result = new ArrayList<StudentDTO>();
+        for (Student std : studentRepository.getStudentByAddress_City(cityName)) {
+            result.add(modelMapper.map(std,StudentDTO.class));
+        }
+        return result;
     }
 
     @Override
     public List<StudentDTO> getStudentByMajor(DepartmentDTO major) {
         Department dept =modelMapper.map(major,Department.class);
-        return Utils.mapList(studentRepository.getStudentsByMajor(dept),StudentDTO.class);
+        List<StudentDTO> result = new ArrayList<StudentDTO>();
+        for (Student std : studentRepository.getStudentsByMajor(dept)) {
+            result.add(modelMapper.map(std,StudentDTO.class));
+        }
+        return result;
     }
 
     @Override

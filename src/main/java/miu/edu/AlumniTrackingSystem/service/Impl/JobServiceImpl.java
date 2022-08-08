@@ -62,7 +62,11 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public List<JobAdvertisementDTO> getAllJobAdvertisements(String username) {
-        return Utils.mapList(jobAdvertisementRepository.findJobAdvertismentByStudentUsername(username),JobAdvertisementDTO.class);
+        List<JobAdvertisementDTO> result = new ArrayList<JobAdvertisementDTO>();
+        for (JobAdvertisment std : jobAdvertisementRepository.findJobAdvertismentByStudentUsername(username)) {
+            result.add(modelMapper.map(std,JobAdvertisementDTO.class));
+        }
+        return result;
     }
 
     @Override
