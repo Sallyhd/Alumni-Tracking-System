@@ -11,6 +11,7 @@ public class AddressServiceIml implements AddressService {
 
     @Autowired
     AddressRepository addressRepository;
+    @Autowired
     ModelMapper modelMapper;
 
     @Override

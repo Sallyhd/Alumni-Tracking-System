@@ -7,6 +7,7 @@ import miu.edu.AlumniTrackingSystem.dto.CvDTO;
 import miu.edu.AlumniTrackingSystem.repository.StudentRepository;
 import miu.edu.AlumniTrackingSystem.service.CVService;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,8 +16,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Data
 @Transactional
 public class CvServiceImpl implements CVService {
+        @Autowired
         ModelMapper modelMapper;
 
+        @Autowired
         StudentRepository studentRepository;
 
 
