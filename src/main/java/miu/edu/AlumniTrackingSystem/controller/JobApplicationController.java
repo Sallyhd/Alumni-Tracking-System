@@ -21,8 +21,8 @@ public class JobApplicationController {
 
     //    -------------------- get applicants -------------------
 
-    @GetMapping("/applicants")
-    public List<StudentDTO> getApplicants(@RequestBody int jobId){
+    @GetMapping("/applicants/{id}")
+    public List<StudentDTO> getApplicants(@PathVariable("id") int jobId){
         return  jobService.getApplicants(jobId);
     }
 
@@ -43,7 +43,7 @@ public class JobApplicationController {
     public ResponseEntity<JobApplicationDTO> getJob(@RequestParam Integer jobId, Principal principal){
 //        KeycloakPrincipal user=(KeycloakPrincipal)principal;
 //        String username=user.getKeycloakSecurityContext().getToken().getPreferredUsername();
-        return null;
+        return ResponseEntity.ok(new JobApplicationDTO());
     }
 
 }
