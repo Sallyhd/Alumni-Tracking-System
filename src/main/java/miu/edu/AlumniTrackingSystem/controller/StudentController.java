@@ -34,17 +34,18 @@ public class StudentController {
         return  ResponseEntity.ok(HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "/{id}" ,consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity editProfile(@PathVariable int id,@RequestBody StudentDTO student){
+    @PostMapping(value = "/{id}" ,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity editProfile(@RequestBody StudentDTO student){
+        System.out.println("firstStd"+student);
         studentService.editProfile(student);
         return  ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @PostMapping("/{id}")
-    public ResponseEntity AddJobExperience(@PathVariable int id, @RequestBody JobExperienceDTO jobExperienceDTO){
-        studentService.AddJobExperience(id,jobExperienceDTO);
-        return ResponseEntity.ok(HttpStatus.OK);
-    }
+//    @PostMapping("/{id}")
+//    public ResponseEntity AddJobExperience(@PathVariable int id, @RequestBody JobExperienceDTO jobExperienceDTO){
+//        studentService.AddJobExperience(id,jobExperienceDTO);
+//        return ResponseEntity.ok(HttpStatus.OK);
+//    }
 
     @GetMapping
     public ResponseEntity getStudents(){
@@ -67,9 +68,9 @@ public class StudentController {
         DepartmentDTO major = deptService.getById(majorId).get();
         return  ResponseEntity.ok(studentService.getStudentByMajor(major));
     }
-    @GetMapping("/findByLastname")
-    public ResponseEntity getStudentByLastname(@RequestParam String lastname){
-        return  ResponseEntity.ok(studentService.getStudentByLastName(lastname));
+    @GetMapping("/findByName")
+    public ResponseEntity getStudentByName(@RequestParam String name){
+        return  ResponseEntity.ok(studentService.getStudentByName(name));
     }
     @PostMapping("/JobAdv")
     public ResponseEntity addJobAdv(@RequestBody JobAdvAndFileDTO advAndFileDTO){

@@ -36,6 +36,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void editProfile(StudentDTO user) {
+        System.out.println("firstStudentDTO"+user);
         studentRepository.save(modelMapper.map(user,Student.class));
     }
 
@@ -44,8 +45,8 @@ public class StudentServiceImpl implements StudentService {
         return Utils.mapList(studentRepository.getStudentByAddress_State(state),StudentDTO.class);
     }
     @Override
-    public List<StudentDTO> getStudentByLastName(String lastName) {
-        return Utils.mapList(studentRepository.getStudentsByLastname(lastName),StudentDTO.class);
+    public List<StudentDTO> getStudentByName(String name) {
+        return Utils.mapList(studentRepository.getStudentsByFirstnameContaining(name),StudentDTO.class);
     }
 
     @Override

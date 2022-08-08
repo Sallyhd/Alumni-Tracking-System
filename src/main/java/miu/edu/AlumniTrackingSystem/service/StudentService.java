@@ -9,7 +9,7 @@ import java.util.List;
 public interface StudentService extends UserService<StudentDTO>{
     List<StudentDTO> getStudentByState(String stateName);
 
-    List<StudentDTO> getStudentByLastName(String lastName);
+    List<StudentDTO> getStudentByName(String name);
 
     List<StudentDTO> getStudentByCity(String cityName);
 
