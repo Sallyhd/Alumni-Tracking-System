@@ -16,7 +16,6 @@ public class JobAdvertisementDTO {
     private Integer id;
     private String companyName;
     private String description;
-    private String benefits;
     private List<TagDTO> tags;
 
     @JsonManagedReference(value="test")
