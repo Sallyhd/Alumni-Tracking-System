@@ -31,9 +31,9 @@ public class FacultyController {
         facultyService.register(newFaculty);
         return  ResponseEntity.ok(HttpStatus.CREATED);
     }
-    @PutMapping("/edit")
-    public ResponseEntity editProfile(@RequestBody FacultyDTO faculty){
-        facultyService.editProfile(faculty);
+    @PutMapping("/{id}")
+    public ResponseEntity editProfile(@PathVariable int id,@RequestBody FacultyDTO faculty){
+        facultyService.editProfile(id,faculty);
         return  ResponseEntity.ok(HttpStatus.OK);
     }
     @GetMapping("/findByName")

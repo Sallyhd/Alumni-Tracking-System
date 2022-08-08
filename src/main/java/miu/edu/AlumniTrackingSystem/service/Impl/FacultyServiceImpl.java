@@ -28,7 +28,8 @@ public class FacultyServiceImpl implements FacultyService {
     }
 
     @Override
-    public void editProfile(FacultyDTO user) {
+    public void editProfile(int id ,FacultyDTO user) {
+        Faculty f = modelMapper.map(user,Faculty.class);
         facultyRepository.save(modelMapper.map(user, Faculty.class));
     }
 

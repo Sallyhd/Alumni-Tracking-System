@@ -37,7 +37,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void editProfile(StudentDTO user) {
+    public void editProfile(int id ,StudentDTO user) {
         System.out.println("firstStudentDTO"+user);
         studentRepository.save(modelMapper.map(user,Student.class));
     }

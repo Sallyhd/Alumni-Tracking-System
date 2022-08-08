@@ -34,10 +34,10 @@ public class StudentController {
         return  ResponseEntity.ok(HttpStatus.CREATED);
     }
 
-    @PostMapping(value = "/{id}" ,consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity editProfile(@RequestBody StudentDTO student){
+    @PutMapping(value="/{id}",consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity editProfile(@PathVariable int id,@RequestBody StudentDTO student){
         System.out.println("firstStd"+student);
-        studentService.editProfile(student);
+        studentService.editProfile(id,student);
         return  ResponseEntity.ok(HttpStatus.OK);
     }
 
