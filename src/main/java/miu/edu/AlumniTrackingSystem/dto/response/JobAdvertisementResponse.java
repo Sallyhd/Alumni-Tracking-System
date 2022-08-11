@@ -25,8 +25,6 @@ public class JobAdvertisementResponse {
     private StudentResponse student;
     @JsonManagedReference(value="jobAdvertisementApplicationResponse")
     private List<JobApplicationResponse> jobApplications;
-
     @JsonManagedReference(value = "jobAdvertisementAddressResponse")
     private AddressResponse address;
-
 }

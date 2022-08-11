@@ -15,12 +15,12 @@ import lombok.NoArgsConstructor;
         private String city;
         private String state;
         private int zip;
-        @JsonBackReference(value = "studentAddressResponse")
-        private StudentResponse student;
+//        @JsonBackReference(value = "studentAddressResponse")
+//        private StudentResponse student;
         @JsonBackReference(value = "facultyAddressResponse")
         private FacultyResponse faculty;
-        @JsonBackReference(value = "jobAdvertisementAddressResponse")
-        private JobAdvertisementResponse jobAdvertisement;
+//        @JsonBackReference(value = "jobAdvertisementAddressResponse")
+//        private JobAdvertisementResponse jobAdvertisement;
  }
 
 

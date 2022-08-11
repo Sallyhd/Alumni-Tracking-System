@@ -41,12 +41,6 @@ public class StudentController {
         return  ResponseEntity.ok(HttpStatus.OK);
     }
 
-//    @PostMapping("/{id}")
-//    public ResponseEntity AddJobExperience(@PathVariable int id, @RequestBody JobExperienceDTO jobExperienceDTO){
-//        studentService.AddJobExperience(id,jobExperienceDTO);
-//        return ResponseEntity.ok(HttpStatus.OK);
-//    }
-
     @GetMapping
     public ResponseEntity getStudents(){
         return  ResponseEntity.ok(studentService.findAll());
