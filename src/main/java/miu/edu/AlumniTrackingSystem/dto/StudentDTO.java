@@ -13,18 +13,14 @@ import java.util.List;
 @AllArgsConstructor
 public class StudentDTO extends UserDTO{
     private double gpa;
-    @JsonManagedReference(value = "mailingAddress")
     private AddressDTO address;
 
-    @JsonManagedReference(value="jobingAdv")
     private List<JobAdvertisementDTO> jobAdvertisments;
 
 
     private DepartmentDTO major;
 
-    @JsonManagedReference(value = "applications")
     private List<JobApplicationDTO> jobApplications;
 
-    @JsonManagedReference(value = "experience")
     private List<JobExperienceDTO> professionalExperiences;
 }

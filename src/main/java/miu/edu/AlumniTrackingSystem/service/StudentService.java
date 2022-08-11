@@ -3,20 +3,21 @@ package miu.edu.AlumniTrackingSystem.service;
 import miu.edu.AlumniTrackingSystem.dto.DepartmentDTO;
 import miu.edu.AlumniTrackingSystem.dto.JobExperienceDTO;
 import miu.edu.AlumniTrackingSystem.dto.StudentDTO;
+import miu.edu.AlumniTrackingSystem.dto.response.StudentResponse;
 
 import java.util.List;
 
 public interface StudentService extends UserService<StudentDTO>{
-    List<StudentDTO> getStudentByState(String stateName);
+    List<StudentResponse> getStudentByState(String stateName);
 
-    List<StudentDTO> getStudentByName(String name);
+    List<StudentResponse> getStudentByName(String name);
 
-    List<StudentDTO> getStudentByCity(String cityName);
+    List<StudentResponse> getStudentByCity(String cityName);
 
-    List<StudentDTO> getStudentByMajor(DepartmentDTO major);
-    StudentDTO getStudentByUserName(String username);
-    List<StudentDTO> getStudentById(int id);
-    List<StudentDTO> findAll();
-    StudentDTO findById(int id);
-    void AddJobExperience(int stdId ,JobExperienceDTO jobExperienceDTO);
+    List<StudentResponse> getStudentByMajor(DepartmentDTO major);
+    StudentResponse getStudentByUserName(String username);
+    List<StudentResponse> getStudentById(int id);
+    List<StudentResponse> findAll();
+    StudentResponse findById(int id);
+    void AddJobExperience(int stdId , JobExperienceDTO jobExperienceResponse);
 }

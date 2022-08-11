@@ -5,6 +5,7 @@ import miu.edu.AlumniTrackingSystem.service.CommentService;
 import miu.edu.AlumniTrackingSystem.service.FacultyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,8 +32,9 @@ public class FacultyController {
         facultyService.register(newFaculty);
         return  ResponseEntity.ok(HttpStatus.CREATED);
     }
-    @PutMapping("/{id}")
+    @PutMapping(value = "/{id}")
     public ResponseEntity editProfile(@PathVariable int id,@RequestBody FacultyDTO faculty){
+        System.out.println("firstStudentDTO"+faculty.getFirstname()+faculty.getId());
         facultyService.editProfile(id,faculty);
         return  ResponseEntity.ok(HttpStatus.OK);
     }

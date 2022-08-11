@@ -1,5 +1,7 @@
 package miu.edu.AlumniTrackingSystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,12 +16,14 @@ import java.util.List;
 public class JobAdvertisment extends BaseClass{
     private String companyName;
     @ManyToOne
+    @JsonBackReference(value="jobingAdv")
     private Student student;
 
     @OneToMany(mappedBy = "jobAdvertisment")
+    @JsonManagedReference("jobAttatchmentsEntity")
     private List<JobAttachment> jobAttatchments;
 
-    @OneToMany(mappedBy = "jobAdvertisment")
+    @OneToMany
     private List<JobApplication> jobApplications;
 
     @OneToOne
@@ -27,4 +31,5 @@ public class JobAdvertisment extends BaseClass{
 
     @ManyToMany(cascade = {CascadeType.PERSIST})
     private List<Tag> tags;
+
 }

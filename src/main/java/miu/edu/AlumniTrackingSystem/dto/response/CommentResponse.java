@@ -1,4 +1,4 @@
-package miu.edu.AlumniTrackingSystem.dto;
+package miu.edu.AlumniTrackingSystem.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -13,12 +13,12 @@ import javax.persistence.ManyToOne;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommentDTO {
+public class CommentResponse {
 
   private int id;
   private String discription;
-  private StudentDTO student;
+  private StudentResponse student;
 
-  private FacultyDTO faculty;
+  private FacultyResponse faculty;
 
 }

@@ -1,5 +1,6 @@
 package miu.edu.AlumniTrackingSystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -11,12 +12,13 @@ import java.util.List;
 @Entity
 public class JobExperience extends BaseClass{
     private String companyName;
-    private Date startDate;
-    private Date finishDate;
+    private LocalDate startDate;
+    private LocalDate finishDate;
     private String description;
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Tag> tags;
 
+    @JsonBackReference(value = "experiences")
     @ManyToOne
     private Student student;
 }

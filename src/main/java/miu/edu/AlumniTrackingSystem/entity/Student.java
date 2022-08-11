@@ -1,5 +1,7 @@
 package miu.edu.AlumniTrackingSystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,18 +18,22 @@ public class Student extends User{
 
     private double gpa;
 
+//    @JsonManagedReference(value = "studentEntity")
     @OneToOne
     private Address address;
 
+    @JsonManagedReference(value="jobingAdv")
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private List<JobAdvertisment> jobAdvertisments;
 
     @ManyToOne
     private Department major;
 
+    @JsonManagedReference(value = "applicationsEntity")
     @OneToMany(mappedBy = "student",cascade = CascadeType.ALL)
     private List<JobApplication> jobApplications;
 
+    @JsonManagedReference(value = "experience")
     @OneToMany(mappedBy="student",fetch = FetchType.EAGER ,cascade = CascadeType.ALL)
     private List<JobExperience> professionalExperiences;
 

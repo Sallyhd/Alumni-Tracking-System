@@ -18,14 +18,10 @@ public class JobAdvertisementDTO {
     private String description;
     private List<TagDTO> tags;
 
-    @JsonManagedReference(value="test")
     private List<JobAttachmentDTO> jobAttachments;
-    @JsonBackReference(value="jobingAdv")
-    private StudentDTO student;
-    @JsonManagedReference(value="applicants")
+
     private List<JobApplicationDTO> jobApplications;
 
-    @JsonManagedReference(value = "dutyStation")
     private AddressDTO address;
 
 }

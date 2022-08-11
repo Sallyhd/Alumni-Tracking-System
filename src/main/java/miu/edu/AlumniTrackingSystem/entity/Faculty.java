@@ -1,5 +1,6 @@
 package miu.edu.AlumniTrackingSystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ public class Faculty extends  User{
     @OneToMany(mappedBy = "faculty")
     private List<Comment> comments;
 
+    @JsonManagedReference(value="facultyEntity")
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 

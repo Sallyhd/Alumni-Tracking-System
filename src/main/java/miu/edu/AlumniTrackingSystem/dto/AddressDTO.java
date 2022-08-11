@@ -1,6 +1,7 @@
 package miu.edu.AlumniTrackingSystem.dto;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,12 +15,7 @@ import lombok.NoArgsConstructor;
         private String city;
         private String state;
         private int zip;
-        @JsonBackReference(value = "mailingAddress")
-        private StudentDTO student;
-        @JsonBackReference(value = "faculty")
-        private FacultyDTO faculty;
-        @JsonBackReference(value = "dutyStation")
-        private JobAdvertisementDTO jobAdvertisement;
+
  }
 
 

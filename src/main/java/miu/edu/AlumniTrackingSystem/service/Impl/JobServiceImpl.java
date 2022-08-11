@@ -52,7 +52,8 @@ public class JobServiceImpl implements JobService {
     public void applyToJob(Integer advId, String username) {
         Student st = studentRepository.getStudentsByUsername(username);
         JobAdvertisment job=jobAdvertisementRepository.findById(advId).get();
-        st.getJobApplications().add(new JobApplication(st,job));
+        job.getJobApplications().add(new JobApplication(st));
+        jobAdvertisementRepository.save(job);
     }
 
     @Override

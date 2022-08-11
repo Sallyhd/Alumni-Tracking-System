@@ -1,4 +1,4 @@
-package miu.edu.AlumniTrackingSystem.dto;
+package miu.edu.AlumniTrackingSystem.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class JobExperienceDTO {
+public class JobExperienceResponse {
 
     private Integer id;
     private String companyName;
@@ -19,6 +19,7 @@ public class JobExperienceDTO {
     private LocalDate finishDate;
     private String description;
     private String reasonToLeave;
-
+    @JsonBackReference(value = "jobExperiencestudentResponse")
+    private StudentResponse student;
 
 }

@@ -1,4 +1,4 @@
-package miu.edu.AlumniTrackingSystem.dto;
+package miu.edu.AlumniTrackingSystem.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
@@ -8,9 +8,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class JobAttachmentDTO {
+public class JobAttachmentResponse {
     private Integer id;
     private String name;
     // cloud url of the file
     private String url;
+    @JsonBackReference(value="jobAdvertisementAttachmentResponse")
+    private JobAdvertisementResponse jobAdvertisement;
 }
