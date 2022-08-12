@@ -23,7 +23,7 @@ public class JobAdvertisment extends BaseClass{
     @JsonManagedReference("jobAttatchmentsEntity")
     private List<JobAttachment> jobAttatchments;
 
-    @OneToMany
+    @OneToMany(mappedBy = "jobAdvertisment")
     private List<JobApplication> jobApplications;
 
     @OneToOne

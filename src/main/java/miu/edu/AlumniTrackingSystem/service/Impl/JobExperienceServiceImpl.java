@@ -26,33 +26,16 @@ public class JobExperienceServiceImpl implements JobExperienceService {
     public void addExperience(JobExperienceDTO jobExperienceDTO, String username) {
 
         JobExperience jobExperience = modelMapper.map(jobExperienceDTO, JobExperience.class);
-        jobExperience.setStudent(studentRepository.getStudentsByUsername(username));
-        studentRepository.getStudentsByUsername(username).getProfessionalExperiences().add(jobExperience);
+        jobExperience.setStudent(studentRepository.getStudentByUsername(username));
+        studentRepository.getStudentByUsername(username).getProfessionalExperiences().add(jobExperience);
 
     }
 
     @Override
     public void removeExperience(Integer experienceId, String Username) {
 
-        Student s = studentRepository.getStudentsByUsername(Username);
+        Student s = studentRepository.getStudentByUsername(Username);
         jobExperienceRepository.deleteById(experienceId);
 
     }
 }
-
-
-
-//    @Override
-//    public void addExperience(ProfessionalExperienceDto professionalExperienceDto, String username) {
-//        ProfessionalExperience professionalExperience =
-//                modelMapper.map(professionalExperienceDto , ProfessionalExperience.class);
-//        professionalExperience.setStudent(studentRepo.getStudentByUsername(username));
-//        studentRepo.getStudentByUsername(username).getProfessionalExperiences().add(professionalExperience);
-//
-//    }
-//
-//    @Override
-//    public void removeExperience(Integer experienceId,String username) {
-//        Student s= studentRepo.getStudentByUsername(username);
-//        professionalExperienceRepo.deleteById(experienceId);
-//    }

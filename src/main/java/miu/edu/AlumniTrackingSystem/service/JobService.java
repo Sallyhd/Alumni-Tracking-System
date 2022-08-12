@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface JobService {
     List<StudentDTO> getApplicants(Integer jobId);
-    void applyToJob(Integer jobId,String username);
+    void applyToJob(Integer jobId,int stdId);
     JobAdvertisementDTO getById(int id);
     List<JobAdvertisementDTO> getAllJobAdvertisements(String username);
     Page<JobAdvertisment> getAllJobAdvPaginated(PagingRequest pagingRequest);

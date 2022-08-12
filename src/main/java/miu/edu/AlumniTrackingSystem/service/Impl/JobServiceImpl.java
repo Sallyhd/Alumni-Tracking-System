@@ -4,16 +4,14 @@ package miu.edu.AlumniTrackingSystem.service.Impl;
 import lombok.AllArgsConstructor;
 import miu.edu.AlumniTrackingSystem.configuration.Utils;
 import miu.edu.AlumniTrackingSystem.dto.*;
-import miu.edu.AlumniTrackingSystem.entity.JobAdvertisment;
-import miu.edu.AlumniTrackingSystem.entity.JobApplication;
-import miu.edu.AlumniTrackingSystem.entity.JobAttachment;
-import miu.edu.AlumniTrackingSystem.entity.Student;
+import miu.edu.AlumniTrackingSystem.entity.*;
 import miu.edu.AlumniTrackingSystem.repository.JobAdvertisementRepository;
 import miu.edu.AlumniTrackingSystem.repository.JobApplicationRepository;
 import miu.edu.AlumniTrackingSystem.repository.StudentRepository;
 import miu.edu.AlumniTrackingSystem.service.JobAttachmentService;
 import miu.edu.AlumniTrackingSystem.service.JobService;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -28,15 +26,17 @@ import java.util.stream.Stream;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
-@Transactional
 public class JobServiceImpl implements JobService {
-    private final JobAdvertisementRepository jobAdvertisementRepository;
-
-    private final JobApplicationRepository jobApplicationRepository;
-    private final JobAttachmentService jobAttachmentService;
-    private final StudentRepository studentRepository;
-    private final ModelMapper modelMapper;
+    @Autowired
+    private JobAdvertisementRepository jobAdvertisementRepository;
+    @Autowired
+    private JobApplicationRepository jobApplicationRepository;
+    @Autowired
+    private JobAttachmentService jobAttachmentService;
+    @Autowired
+    private  StudentRepository studentRepository;
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Override
     public List<StudentDTO> getApplicants(Integer jobId) {
@@ -49,10 +49,12 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public void applyToJob(Integer advId, String username) {
-        Student st = studentRepository.getStudentsByUsername(username);
+    public void applyToJob(Integer advId, int stdId) {
+        Student st =  studentRepository.findById(stdId).get();
         JobAdvertisment job=jobAdvertisementRepository.findById(advId).get();
-        job.getJobApplications().add(new JobApplication(st));
+        JobApplication jobApp = new JobApplication();
+        jobApp.setStudent(st);
+        job.getJobApplications().add(jobApp);
         jobAdvertisementRepository.save(job);
     }
 

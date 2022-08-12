@@ -81,7 +81,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public StudentResponse getStudentByUserName(String username) {
-        return modelMapper.map(studentRepository.getStudentsByUsername(username),StudentResponse.class);
+        return modelMapper.map(studentRepository.getStudentByUsername(username),StudentResponse.class);
     }
 
     @Override

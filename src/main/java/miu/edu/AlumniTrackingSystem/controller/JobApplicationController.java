@@ -13,7 +13,7 @@ import java.security.Principal;
 import java.util.List;
 
 @RestController
-@RequestMapping("/job-applications")
+@RequestMapping("/jobApplications")
 @AllArgsConstructor
 @CrossOrigin("*")
 public class JobApplicationController {
@@ -28,12 +28,10 @@ public class JobApplicationController {
 
 
     //    -------------------- apply for a job -------------------
-    @PostMapping("/apply")
-    public ResponseEntity applyToJob(@RequestParam Integer jobId, Principal principal){
+    @PostMapping
+    public ResponseEntity applyToJob(@RequestParam int jobId, @RequestParam int stdId){
 
-//        KeycloakPrincipal user=(KeycloakPrincipal)principal;
-//        String username=user.getKeycloakSecurityContext().getToken().getPreferredUsername();
-       // jobService.applyToJob(jobId,username);
+        jobService.applyToJob(jobId,stdId);
         return ResponseEntity.ok().build();
     }
 
@@ -41,8 +39,6 @@ public class JobApplicationController {
 
     @GetMapping("")
     public ResponseEntity<JobApplicationDTO> getJob(@RequestParam Integer jobId, Principal principal){
-//        KeycloakPrincipal user=(KeycloakPrincipal)principal;
-//        String username=user.getKeycloakSecurityContext().getToken().getPreferredUsername();
         return ResponseEntity.ok(new JobApplicationDTO());
     }
 

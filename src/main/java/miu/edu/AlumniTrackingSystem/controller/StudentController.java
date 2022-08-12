@@ -66,6 +66,10 @@ public class StudentController {
     public ResponseEntity getStudentByName(@RequestParam String name){
         return  ResponseEntity.ok(studentService.getStudentByName(name));
     }
+    @GetMapping("/findByUsername")
+    public ResponseEntity getStudentByUsername(@RequestParam String name){
+        return  ResponseEntity.ok(studentService.getStudentByUserName(name));
+    }
     @PostMapping("/JobAdv")
     public ResponseEntity addJobAdv(@RequestBody JobAdvAndFileDTO advAndFileDTO){
         jobService.saveJobAdvertisement(advAndFileDTO.getJobAdvertisementDTO(), advAndFileDTO.getFile());
