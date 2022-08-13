@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import miu.edu.AlumniTrackingSystem.entity.Student;
 
 import java.util.List;
 
@@ -24,4 +25,6 @@ public class JobAdvertisementDTO {
 
     private AddressDTO address;
 
+    @JsonManagedReference
+    private StudentDTO student;
 }

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.List;
@@ -30,11 +31,11 @@ public class Student extends User{
     private Department major;
 
     @JsonManagedReference(value = "applicationsEntity")
-    @OneToMany(mappedBy = "student",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "student")
     private List<JobApplication> jobApplications;
 
     @JsonManagedReference(value = "experience")
-    @OneToMany(mappedBy="student",fetch = FetchType.EAGER ,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="student",fetch = FetchType.EAGER )
     private List<JobExperience> professionalExperiences;
 
 }

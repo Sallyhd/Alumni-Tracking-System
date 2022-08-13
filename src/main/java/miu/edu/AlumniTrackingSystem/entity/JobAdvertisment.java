@@ -26,7 +26,7 @@ public class JobAdvertisment extends BaseClass{
     @OneToMany(mappedBy = "jobAdvertisment")
     private List<JobApplication> jobApplications;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.MERGE)
     private Address address;
 
     @ManyToMany(cascade = {CascadeType.PERSIST})

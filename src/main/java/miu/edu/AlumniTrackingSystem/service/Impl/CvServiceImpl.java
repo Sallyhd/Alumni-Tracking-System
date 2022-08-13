@@ -25,10 +25,8 @@ public class CvServiceImpl implements CVService {
 
         @Override
         public CvDTO getCv(String username) {
-            return modelMapper.map(studentRepository.getStudentsByUsername(username),CvDTO.class);
+            return modelMapper.map(studentRepository.getStudentByUsername(username),CvDTO.class);
 
         }
-
-
     }
 
